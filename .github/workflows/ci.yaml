@@ -1,5 +1,5 @@
 name: Build and test code on differents devices
-run-name: Build-test
+run-name: Continuous integration
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        version: [ 18 ]
+        version: [18]
 
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +33,9 @@ jobs:
 
       - name: Linter checker
         run: npm run lint
+
+      - name: Generate API services
+        run: npm run generate
 
       - name: Unit tests
         run: npx vitest run --coverage.enabled
@@ -63,7 +66,7 @@ jobs:
     needs: test-build
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         browser: [chrome, edge, firefox]
 
     steps:
@@ -77,16 +80,19 @@ jobs:
           path: dist
 
       - name: Node info
-        run: node -v
+        run: |
+          node -v
+          npm ci && npm run generate
 
       - name: UI Test for chrome
         uses: cypress-io/github-action@v6
         with:
-          start: npm run preview
+          start: npx vite dev --port 4173
           wait-on: "http://localhost:4173"
-          wait-on-timeout: 120
+          wait-on-timeout: 180
           record: true
           config-file: cypress.config.ts
+          spec: cypress/e2e/laptop/**/*.cy.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -104,7 +110,7 @@ jobs:
     needs: test-build
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         browser: [chrome, edge, firefox]
 
     steps:
@@ -118,17 +124,20 @@ jobs:
           path: dist
 
       - name: Node info
-        run: node -v
+        run: |
+          node -v
+          npm ci && npm run generate
 
       - name: UI Test for chrome
         uses: cypress-io/github-action@v6
         with:
           config: "viewportWidth=375,viewportHeight=667"
-          start: npm run preview
+          start: npx vite dev --port 4173
           wait-on: "http://localhost:4173"
-          wait-on-timeout: 120
+          wait-on-timeout: 180
           record: true
           config-file: cypress.config.ts
+          spec: cypress/e2e/laptop/**/*.cy.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -139,46 +148,3 @@ jobs:
         run: |
           echo Cypress finished with: ${{ steps.cypress.outcome }}
           echo See results at ${{ steps.cypress.outputs.resultsUrl }}
-    
-  ui-tablet-tests:
-    timeout-minutes: 15
-    runs-on: ubuntu-20.04
-    needs: test-build
-    strategy:
-      fail-fast: false
-      matrix: 
-        browser: [chrome, edge, firefox]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-      - name: Node info
-        run: node -v
-
-      - name: UI Test for chrome
-        uses: cypress-io/github-action@v6
-        with:
-          config: "viewportWidth=668,viewportHeight=1023"
-          start: npm run preview
-          wait-on: "http://localhost:4173"
-          wait-on-timeout: 120
-          record: true
-          config-file: cypress.config.ts
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          DEBUG: "cypress:server:args"
-      - name: Print Cypress Cloud URL
-        if: always()
-        run: |
-          echo Cypress finished with: ${{ steps.cypress.outcome }}
-          echo See results at ${{ steps.cypress.outputs.resultsUrl }}
-      

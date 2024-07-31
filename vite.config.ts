@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
-    base: `${process.env.VITE_PATH ?? "/" }`,
+    base: `${process.env.VITE_PATH ?? "/"}`,
     build: {
       outDir: mode === "staging" ? "dist-staging" : "dist",
       emptyOutDir: true,

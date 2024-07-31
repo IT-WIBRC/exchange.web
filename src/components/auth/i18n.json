@@ -1,0 +1,14 @@
+{
+  "en": {
+    "_ttl": "Connect with your friends easily",
+    "_ttl2": "Private messages and calls allow you to be yourself, talk freely and feel close to the people who matter most to you, no matter where they are in the world.",
+    "_ttl3": "Make your communication more fun...",
+    "get_started_btn": "get started"
+  },
+  "fr": {
+    "_ttl": "Se connecter facilement avec ses amis",
+    "_ttl2": "Les messages et appels privés vous permettent d'être vous-même, de parler librement et de vous sentir proche des personnes qui comptent le plus pour vous, où qu'elles se trouvent dans le monde.",
+    "_ttl3": "Rendez votre communication plus amusante...",
+    "get_started_btn": "commencer"
+  }
+}
