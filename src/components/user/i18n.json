@@ -1,0 +1,104 @@
+{
+  "en": {
+    "fields": {
+      "username": {
+        "_lbl": "username",
+        "_ph": "Enter your username",
+        "errors": {
+          "required": "Username must be required",
+          "min_length": "Username must have a min length of 6",
+          "max_length": "Username must have a min length of 12",
+          "format": "Only alphanumeric characters with some separators (_- )"
+        }
+      },
+      "email": {
+        "_lbl": "email",
+        "_ph": "Enter your email",
+        "errors": {
+          "valid_pattern": "Must be a valid email",
+          "required": "Email must be required"
+        }
+      },
+      "password": {
+        "_lbl": "password",
+        "_ph": "Enter your password",
+        "errors": {
+          "min_length": "Password must have a min length of 8",
+          "required": "Password is required",
+          "valid_pattern": "Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+        }
+      },
+      "otp": {
+        "length": "Code must have 4 digits"
+      }
+    },
+    "registration": {
+      "_ttl": "Create account in ",
+      "_desc": "Register to discuss and share your skill in software development",
+      "_btn": "create",
+      "no_account": "Already have an account?"
+    },
+    "login": {
+      "_btn": "login"
+    },
+    "otp": {
+      "_ttl": "Verify your email address",
+      "_desc": "An email with a verification code has been sent to:",
+      "fill_lbl": "Please enter the code here:",
+      "not_get": "Did not get a code?",
+      "_btn": "Verify account",
+      "resend": "Resend"
+    }
+  },
+  "fr": {
+    "fields": {
+      "username": {
+        "_lbl": "nom d'utilisateur",
+        "_ph": "Entrez votre nom d'utilisateur",
+        "errors": {
+          "required": "Le nom d'utilisateur est requis",
+          "min_length": "Le nom d'utilisateur doit être minimun 6 characters",
+          "max_length": "Le nom d'utilisateur doit être maximun 12 characters",
+          "format": "Uniquement des caractères alphanumériques avec quelques séparateurs (_- )"
+        }
+      },
+      "email": {
+        "_lbl": "email",
+        "_ph": "Entrez votre addresse mail",
+        "errors": {
+          "valid_pattern": "Doit etre une email valide",
+          "required": "Email est obligatoire"
+        }
+      },
+      "password": {
+        "_lbl": "mot de passe",
+        "_ph": "Entrer votre mot de passe",
+        "errors": {
+          "min_length": "Mot de passe doit avoir minimun 8 characteres",
+          "required": "Mot de passe est obligatoire",
+          "valid_pattern": "Minimum 8 et maximum 10 caractères, au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial."
+        }
+      },
+      "otp": {
+        "length": "Le code doit être de 4 chiffres"
+      }
+    },
+    "registration": {
+      "_ttl": "Créer un compte dans ",
+      "_desc": "Inscrivez-vous pour discuter et partager vos compétences en matière de développement logiciel.",
+      "_btn": "créer",
+      "no_account": "Avez-vous déjà un compte ?"
+    },
+    "login": {
+      "_btn": "connexion"
+    },
+    "otp": {
+      "_ttl": "Vérifiez votre adresse électronique",
+      "_desc": "Un courriel contenant un code de vérification a été envoyé à :",
+      "fill_lbl": "Veuillez saisir le code ici :",
+      "not_get": "Vous n'avez pas reçu de code ?",
+      "_btn": "Vérifier le compte",
+      "resend": "Renvoyer"
+    }
+  }
+}
